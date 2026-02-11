@@ -3,23 +3,23 @@
 
 #include <Arduino.h>
 #include "template_gyro_drone.h"
-#include "servo_drone_motor.h"
 #include "quadcopter_pid.h"
-#include "bno08x_drone_gyro.h"
+#include "virtual_drone_gyro.h"
+#include "virtual_drone_motor.h"
 
-class KlevebrandMaxFlyDrone : public TemplateGyroDrone<QuadcopterPid, Bno08xDroneGyro>
+class KlevebrandMaxFlyDrone : public TemplateGyroDrone<QuadcopterPid, VirtualDroneGyro>
 {
 private:
-  ServoDroneMotor *_motors;
-  ServoDroneMotor& motorLeftFront() { return _motors[0]; };
-  ServoDroneMotor& motorRightFront() { return _motors[1]; };
-  ServoDroneMotor& motorLeftBack() { return _motors[2]; };
-  ServoDroneMotor& motorRightBack() { return _motors[3]; };
-  Bno08xDroneGyro _gyro;
+  VirtualDroneMotor *_motors;
+  VirtualDroneMotor& motorLeftFront() { return _motors[0]; };
+  VirtualDroneMotor& motorRightFront() { return _motors[1]; };
+  VirtualDroneMotor& motorLeftBack() { return _motors[2]; };
+  VirtualDroneMotor& motorRightBack() { return _motors[3]; };
+  VirtualDroneGyro _gyro;
   void printThrottle();
 
 public:
-  KlevebrandMaxFlyDrone(ServoDroneMotor *motors) : TemplateGyroDrone<QuadcopterPid, Bno08xDroneGyro>(500, 200, 10000, &_gyro), _gyro(10)
+  KlevebrandMaxFlyDrone(VirtualDroneMotor *motors) : TemplateGyroDrone<QuadcopterPid, VirtualDroneGyro>(500, 200, 10000, &_gyro)
   {
     this->_motors = motors;
   }
