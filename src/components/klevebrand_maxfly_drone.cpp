@@ -1,20 +1,19 @@
 #include "klevebrand_maxfly_drone.h"
+#include <cstdio>
 
 void KlevebrandMaxFlyDrone::setup()
 {
-    Serial.begin(SERIAL_BAUD_RATE);
-
-    Serial.println("STARTING DRONE...");
+    printf("STARTING DRONE...\n");
 
     _gyro.setup();
 
-    eeprom_pid_repository.setup();
+    //eeprom_pid_repository.setup();
 
     setupMotors();
 
     setFlightModeAcro();
 
-    Serial.println("DRONE STARTED!");
+    printf("DRONE STARTED!\n");
 }
 
 static long last_run_start_micros_timestamp = 0;

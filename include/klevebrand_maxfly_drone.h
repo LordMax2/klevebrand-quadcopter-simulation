@@ -1,11 +1,11 @@
 #ifndef KLEVEBRAND_MAXFLY_DRONE_H
 #define KLEVEBRAND_MAXFLY_DRONE_H
 
-#include <Arduino.h>
 #include "template_gyro_drone.h"
 #include "quadcopter_pid.h"
 #include "virtual_drone_gyro.h"
 #include "virtual_drone_motor.h"
+#include <cstdio>
 
 class KlevebrandMaxFlyDrone : public TemplateGyroDrone<QuadcopterPid, VirtualDroneGyro>
 {
@@ -33,8 +33,6 @@ public:
     motorRightFront().setSpeed(0);
     motorLeftBack().setSpeed(0);
     motorRightBack().setSpeed(0);
-
-    delay(1000);
   };
   void stopMotors() override
   {

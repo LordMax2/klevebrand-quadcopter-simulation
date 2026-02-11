@@ -1,16 +1,20 @@
 #include "klevebrand_maxfly_drone.h"
 #include "virtual_drone_motor.h"
-
-VirtualDroneMotor motors[4];
-
-KlevebrandMaxFlyDrone drone = KlevebrandMaxFlyDrone(motors);
+#include "Arduino.h"
+#include <cstdio>
 
 int main()
 {
-  // Startup the gyroscope and motors
-  drone.setup();
+  VirtualDroneMotor motors[4];
 
-  while(true) {
+  KlevebrandMaxFlyDrone drone = KlevebrandMaxFlyDrone(motors);
+
+  printf("Start\n");
+
+  while (true)
+  {
+    printf("run\n");
+
     drone.run();
   }
 
