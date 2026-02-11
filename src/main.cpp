@@ -1,6 +1,4 @@
 #include "klevebrand_maxfly_drone.h"
-#include "pwm_receiver.h"
-#include "servo_drone_motor.h"
 #include "virtual_drone_motor.h"
 
 VirtualDroneMotor motors[4];
