@@ -33,6 +33,8 @@ public:
     motorRightFront().setSpeed(0);
     motorLeftBack().setSpeed(0);
     motorRightBack().setSpeed(0);
+
+    delay(1000);
   };
   void stopMotors() override
   {
