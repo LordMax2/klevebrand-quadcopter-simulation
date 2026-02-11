@@ -5,14 +5,14 @@ VirtualDroneMotor motors[4];
 
 KlevebrandMaxFlyDrone drone = KlevebrandMaxFlyDrone(motors);
 
-void setup()
+int main()
 {
   // Startup the gyroscope and motors
   drone.setup();
-}
 
-void loop()
-{
-  // Run the drone feedback-loop
-  drone.run();
+  while(true) {
+    drone.run();
+  }
+
+  return 0;
 }
