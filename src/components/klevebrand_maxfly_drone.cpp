@@ -4,14 +4,6 @@ void KlevebrandMaxFlyDrone::setup()
 {
     Serial.begin(SERIAL_BAUD_RATE);
 
-    if (!Serial)
-    {
-        Serial.println("FAILED TO START SERIAL...");
-    }
-    while (!Serial)
-    {
-    }
-
     Serial.println("STARTING DRONE...");
 
     _gyro.setup();
