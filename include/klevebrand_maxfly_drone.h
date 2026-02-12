@@ -5,9 +5,10 @@
 #include "quadcopter_pid.h"
 #include "virtual_drone_gyro.h"
 #include "virtual_drone_motor.h"
+#include "virtual_drone_pid_repository.h"
 #include <cstdio>
 
-class KlevebrandMaxFlyDrone : public TemplateGyroDrone<QuadcopterPid, VirtualDroneGyro>
+class KlevebrandMaxFlyDrone : public TemplateGyroDrone<QuadcopterPid, VirtualDroneGyro, VirtualDronePidRepository>
 {
 private:
   VirtualDroneMotor *_motors;
@@ -16,10 +17,11 @@ private:
   VirtualDroneMotor& motorLeftBack() { return _motors[2]; };
   VirtualDroneMotor& motorRightBack() { return _motors[3]; };
   VirtualDroneGyro _gyro;
+  VirtualDronePidRepository _pid_repository;
   void printThrottle();
 
 public:
-  KlevebrandMaxFlyDrone(VirtualDroneMotor *motors) : TemplateGyroDrone<QuadcopterPid, VirtualDroneGyro>(500, 200, 10000, &_gyro)
+  KlevebrandMaxFlyDrone(VirtualDroneMotor *motors) : TemplateGyroDrone<QuadcopterPid, VirtualDroneGyro, VirtualDronePidRepository>(500, 200, 10000, &_gyro, &_pid_repository)
   {
     this->_motors = motors;
   }
