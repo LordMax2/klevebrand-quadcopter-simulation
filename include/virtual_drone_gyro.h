@@ -1,19 +1,12 @@
 #ifndef VIRTUAL_DRONE_GYRO_H
 #define VIRTUAL_DRONE_GYRO_H
 
-#include "template_drone_gyro.h"
+#include "base_drone_gyro.h"
 
-class VirtualDroneGyroDriver {
-
-};
-
-class VirtualDroneGyro : public TemplateDroneGyro<VirtualDroneGyroDriver> {
-private:
-    VirtualDroneGyroDriver _driver;
-
+class VirtualDroneGyro : public BaseDroneGyro
+{
 public:
-    VirtualDroneGyro() : TemplateDroneGyro(_driver) {};
-
+    VirtualDroneGyro() : BaseDroneGyro() {};
 };
 
 #endif // VIRTUAL_DRONE_GYRO_H

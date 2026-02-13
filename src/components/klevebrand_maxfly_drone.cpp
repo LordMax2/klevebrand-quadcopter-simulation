@@ -3,7 +3,7 @@
 
 void KlevebrandMaxFlyDrone::setup()
 {
-    printf("STARTING DRONE...\n");
+    _processor.print("STARTING DRONE...\n");
 
     _gyro.setup();
 
@@ -13,21 +13,19 @@ void KlevebrandMaxFlyDrone::setup()
 
     setFlightModeAcro();
 
-    printf("DRONE STARTED!\n");
+    _processor.print("DRONE STARTED!\n");
 }
 
 static long last_run_start_micros_timestamp = 0;
 
 void KlevebrandMaxFlyDrone::run()
 {
-    printf("Test: %d\n", delayToKeepFeedbackLoopHz(last_run_start_micros_timestamp));
-
     if (delayToKeepFeedbackLoopHz(last_run_start_micros_timestamp) > 0)
     {
         return;
     }
 
-    last_run_start_micros_timestamp = micros();
+    last_run_start_micros_timestamp = _processor.microsecondsTimestamp();
 
     // Get the latest data from the gyroscope
     updateGyro();

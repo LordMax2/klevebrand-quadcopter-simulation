@@ -1,18 +1,12 @@
 #ifndef VIRTUAL_DRONE_PID_REPOSITORY
 #define VIRTUAL_DRONE_PID_REPOSITORY
 
-#include "template_pid_repository.h"
+#include "base_pid_repository.h"
 
-class VirtualDronePidRepositoryDriver {
-
-};
-
-class VirtualDronePidRepository : public TemplatePidRepository<VirtualDronePidRepositoryDriver>
+class VirtualDronePidRepository : public BasePidRepository
 {
-private:
-    VirtualDronePidRepositoryDriver _driver;
 public:
-    VirtualDronePidRepository() : TemplatePidRepository(&_driver) {}
+    VirtualDronePidRepository() : BasePidRepository() {}
     
 };
 

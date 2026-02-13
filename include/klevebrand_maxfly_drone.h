@@ -6,9 +6,10 @@
 #include "virtual_drone_gyro.h"
 #include "virtual_drone_motor.h"
 #include "virtual_drone_pid_repository.h"
+#include "hardware_processor_windows.h"
 #include <cstdio>
 
-class KlevebrandMaxFlyDrone : public TemplateGyroDrone<QuadcopterPid, VirtualDroneGyro, VirtualDronePidRepository>
+class KlevebrandMaxFlyDrone : public TemplateGyroDrone<QuadcopterPid>
 {
 private:
   VirtualDroneMotor *_motors;
@@ -18,10 +19,11 @@ private:
   VirtualDroneMotor& motorRightBack() { return _motors[3]; };
   VirtualDroneGyro _gyro;
   VirtualDronePidRepository _pid_repository;
+  HardwareProcessorWindows _processor;
   void printThrottle();
 
 public:
-  KlevebrandMaxFlyDrone(VirtualDroneMotor *motors) : TemplateGyroDrone<QuadcopterPid, VirtualDroneGyro, VirtualDronePidRepository>(500, 200, 10000, &_gyro, &_pid_repository)
+  KlevebrandMaxFlyDrone(VirtualDroneMotor *motors) : TemplateGyroDrone<QuadcopterPid>(500, 200, 10000, &_processor, &_gyro, &_pid_repository)
   {
     this->_motors = motors;
   }
@@ -36,7 +38,7 @@ public:
     motorLeftBack().setSpeed(0);
     motorRightBack().setSpeed(0);
 
-    delay(1000);
+    processor->sleepMilliseconds(1000);
   };
   void stopMotors() override
   {
