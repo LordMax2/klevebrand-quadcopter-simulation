@@ -12,6 +12,8 @@ int main()
 
   printf("Start\n");
 
+  drone.setThrottle(30);
+
   while (true)
   {
     drone.run();

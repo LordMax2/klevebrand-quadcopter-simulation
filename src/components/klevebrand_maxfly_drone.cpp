@@ -30,7 +30,7 @@ void KlevebrandMaxFlyDrone::run()
     // Get the latest data from the gyroscope
     updateGyro();
 
-    if (hasLostConnection())
+    if (hasLostConnection() && false)
     {
         // If connection is dead, stop the drone
         resetPid();
@@ -38,7 +38,7 @@ void KlevebrandMaxFlyDrone::run()
 
         // Serial.println("LOST CONNECTION");
     }
-    else if (!isMotorsEnabled())
+    else if (!isMotorsEnabled() && false)
     {
         // If the motors are diabled, stop the drone
         resetPid();
@@ -51,7 +51,7 @@ void KlevebrandMaxFlyDrone::run()
         // Increment the integral part of the PID loop
         if (throttle > PID_THROTTLE_THRESHOLD)
         {
-            runPidOptimizer();
+            //runPidOptimizer();
             calculatePidIntegral(_gyro.roll(), _gyro.pitch(), _gyro.yaw());
         }
         else
@@ -62,7 +62,7 @@ void KlevebrandMaxFlyDrone::run()
         // To debug stuff
         // print();
         // printConstants();
-        // printThrottle();
+        printThrottle();
         // printGyro();
 
         // Run the motors with the calculated PID throttle
@@ -84,11 +84,13 @@ void KlevebrandMaxFlyDrone::runMotors(float gyro_roll, float gyro_pitch, float g
 
 void KlevebrandMaxFlyDrone::printThrottle()
 {
-    Serial.print(pid.pidThrottleLF(throttle, _gyro.roll(), roll_desired_angle, _gyro.pitch(), pitch_desired_angle, _gyro.yaw(), yaw_desired_angle));
-    Serial.print("    ");
-    Serial.println(pid.pidThrottleRF(throttle, _gyro.roll(), roll_desired_angle, _gyro.pitch(), pitch_desired_angle, _gyro.yaw(), yaw_desired_angle));
-    Serial.print(pid.pidThrottleLB(throttle, _gyro.roll(), roll_desired_angle, _gyro.pitch(), pitch_desired_angle, _gyro.yaw(), yaw_desired_angle));
-    Serial.print("    ");
-    Serial.println(pid.pidThrottleRB(throttle, _gyro.roll(), roll_desired_angle, _gyro.pitch(), pitch_desired_angle, _gyro.yaw(), yaw_desired_angle));
-    Serial.println("-----------------------------------------");
+    printf("%.3f %.3f\n",
+           pid.pidThrottleLF(throttle, _gyro.roll(), roll_desired_angle, _gyro.pitch(), pitch_desired_angle, _gyro.yaw(), yaw_desired_angle),
+           pid.pidThrottleRF(throttle, _gyro.roll(), roll_desired_angle, _gyro.pitch(), pitch_desired_angle, _gyro.yaw(), yaw_desired_angle));
+
+    printf("%.3f %.3f\n",
+           pid.pidThrottleLB(throttle, _gyro.roll(), roll_desired_angle, _gyro.pitch(), pitch_desired_angle, _gyro.yaw(), yaw_desired_angle),
+           pid.pidThrottleRB(throttle, _gyro.roll(), roll_desired_angle, _gyro.pitch(), pitch_desired_angle, _gyro.yaw(), yaw_desired_angle));
+
+    printf("-----------------------------------------\n");
 }
