@@ -7,7 +7,7 @@ void KlevebrandMaxFlyDrone::setup()
 
     _gyro.setup();
 
-    //eeprom_pid_repository.setup();
+    pid_repository->setup();
 
     setupMotors();
 
@@ -20,6 +20,8 @@ static long last_run_start_micros_timestamp = 0;
 
 void KlevebrandMaxFlyDrone::run()
 {
+    printf("Test: %d\n", delayToKeepFeedbackLoopHz(last_run_start_micros_timestamp));
+
     if (delayToKeepFeedbackLoopHz(last_run_start_micros_timestamp) > 0)
     {
         return;
