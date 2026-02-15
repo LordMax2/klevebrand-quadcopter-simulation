@@ -2,6 +2,9 @@
 #include "virtual_drone_motor.h"
 #include "ArduinoFake.h"
 
+#include "vehicles/multirotor/api/MultirotorRpcLibClient.hpp"
+#include "common/CommonStructs.hpp"
+
 int main()
 {
   VirtualDroneMotor motors[4];
